@@ -43,10 +43,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 
-app.MapGet("/healthz", () => Results.Ok("Healthy"));
+    app.MapGet("/healthz", () => Results.Ok("Healthy"));
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
 
-app.Run();
+    app.Run();
+}
