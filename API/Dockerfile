@@ -6,9 +6,9 @@ WORKDIR /src
 # Copia todos os arquivos do seu repositório para dentro do container
 COPY . .
 
-# Executa o comando publish no seu projeto específico.
-# Ele restaura os pacotes, compila e publica a aplicação em uma pasta 'out'.
-RUN dotnet publish "API/vitalapi/vitalapi.csproj" -c Release -o /app/publish
+# Executa o comando publish no seu projeto específico, com o caminho corrigido.
+# Como o Railway já está na pasta 'API', o caminho agora começa com 'vitalapi/'.
+RUN dotnet publish "vitalapi/vitalapi.csproj" -c Release -o /app/publish
 
 # Estágio 2: Final (usando o runtime enxuto do ASP.NET)
 # Usamos uma imagem muito menor, apenas com o necessário para rodar a API.
