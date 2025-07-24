@@ -125,8 +125,6 @@ Feito com ❤️ pela equipe Vitalis
 
 ````
 
----
-
 # 🌱 Vitalis — Well-being and Mental Health Platform (ENGLISH VERSION)
 Vitalis is a digital platform built with Angular that promotes emotional care through symbolic, lightweight and accessible features. With tools such as an emotional plant, psychoeducation, session booking and self-care challenges, it turns emotional well-being into a daily habit.
 
