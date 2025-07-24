@@ -5,7 +5,7 @@ namespace vitalapi.Context
 {
     public class vitalcontext : DbContext
     {
-        internal object Assinatura;
+        // A linha 'internal object Assinatura;' foi REMOVIDA daqui.
 
         public vitalcontext(DbContextOptions<vitalcontext> options) : base(options) { }
 

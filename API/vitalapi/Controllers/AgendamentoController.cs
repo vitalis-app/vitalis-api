@@ -58,7 +58,7 @@ namespace vitalapi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AgendamentoExists(id))
+                if (!AgendamentosExists(id))
                 {
                     return NotFound();
                 }
@@ -73,7 +73,8 @@ namespace vitalapi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAgendamento(int id)
         {
-            var agendamento = await _context.Assinaturas.FindAsync(id);
+            var agendamento = await _context.Agendamentos.FindAsync(id);
+
             if (agendamento == null)
             {
                 return NotFound();

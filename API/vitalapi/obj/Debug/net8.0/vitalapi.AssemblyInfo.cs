@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vitalapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+041fa5bace1b9d0729c6afd79eb9c9021883ff79")]
 [assembly: System.Reflection.AssemblyProductAttribute("vitalapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vitalapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

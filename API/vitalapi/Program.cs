@@ -1,25 +1,34 @@
+using Microsoft.EntityFrameworkCore;
+using vitalapi.Context; 
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+var connectionUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+string connectionString;
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (string.IsNullOrEmpty(connectionUrl))
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
+else
+{
+    connectionString = connectionUrl;
 }
 
+builder.Services.AddDbContext<vitalcontext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+);
+
+var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

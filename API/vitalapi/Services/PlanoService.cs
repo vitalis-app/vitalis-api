@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.DTO_S;
+using vitalapi.Models;
 namespace vitalapi.Services
 {
     public class PlanoService
@@ -29,7 +30,8 @@ namespace vitalapi.Services
 
         public async Task<PlanoDto> CreateAsync(CreatePlanoDto dto)
         {
-            var entity = _mapper.Map<PlanoDto>(dto);
+
+            var entity = _mapper.Map<Plano>(dto);
             _context.Planos.Add(entity);
             await _context.SaveChangesAsync();
             return _mapper.Map<PlanoDto>(entity);
