@@ -127,12 +127,8 @@ Feito com ❤️ pela equipe Vitalis
 
 ---
 
-### English Version (for .NET/C# API with MySQL and Railway)
-
-```markdown
-# 🌱 Vitalis API — Well-being Platform Back-end
-
-This is the back-end API repository for the Vitalis platform. Built with C# and .NET, this API handles all business logic, data management, and authentication, serving the front-end application built with Angular. The application is deployed on the [Railway](https://railway.app/) platform.
+# 🌱 Vitalis — Well-being and Mental Health Platform (ENGLISH VERSION)
+Vitalis is a digital platform built with Angular that promotes emotional care through symbolic, lightweight and accessible features. With tools such as an emotional plant, psychoeducation, session booking and self-care challenges, it turns emotional well-being into a daily habit.
 
 ---
 
