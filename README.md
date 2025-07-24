@@ -1,9 +1,6 @@
-# vitalis-api
+# 🌱 Vitalis — Plataforma de Bem-Estar e Saúde Mental (API)
 
-````markdown
-# 🌱 Vitalis API — Back-end da Plataforma de Bem-Estar
-
-Este é o repositório da API back-end para a plataforma Vitalis. Desenvolvida em C# com .NET, esta API é responsável por toda a lógica de negócio, gerenciamento de dados e autenticação, servindo o front-end desenvolvido em Angular. O deploy da aplicação é feito na plataforma [Railway](https://railway.app/).
+Vitalis é uma plataforma digital desenvolvida com Angular, focada em promover o cuidado emocional por meio de recursos simbólicos, leves e acessíveis. Com funcionalidades como planta emocional, psicoeducação, agendamento de consultas e desafios de autocuidado, ela busca transformar o bem-estar mental em um hábito cotidiano.
 
 ---
 
