@@ -3,12 +3,13 @@ using vitalapi.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// --- TESTE: DESATIVANDO OS CONTROLLERS ---
+// builder.Services.AddControllers(); // Linha também comentada
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-// --- BLOCO DE BANCO DE DADOS TEMPORARIAMENTE DESATIVADO ---
+// --- BLOCO DE BANCO DE DADOS AINDA DESATIVADO ---
 /*
 string connectionString;
 var dbHost = Environment.GetEnvironmentVariable("MYSQLHOST");
