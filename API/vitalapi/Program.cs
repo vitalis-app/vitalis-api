@@ -34,11 +34,10 @@ builder.Services.AddDbContext<vitalcontext>(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.MapGet("/healthz", () => Results.Ok("Healthy"));
 
