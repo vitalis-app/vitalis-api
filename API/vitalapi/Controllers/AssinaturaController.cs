@@ -10,9 +10,9 @@ namespace vitalapi.Controllers
     [ApiController]
     public class AssinaturaController : ControllerBase
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
 
-        public AssinaturaController (vitalcontext vitalcontext)
+        public AssinaturaController (VitalContext vitalcontext)
         {
             _context = vitalcontext;
         }
@@ -40,12 +40,12 @@ namespace vitalapi.Controllers
             _context.Assinaturas.Add(assinatura);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAssinatura), new { id = assinatura.ID }, assinatura);
+            return CreatedAtAction(nameof(GetAssinatura), new { id = assinatura.Id }, assinatura);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAssinatura(int id, Assinatura assinatura)
         {
-            if (id != assinatura.ID)
+            if (id != assinatura.Id)
             {
                 return BadRequest();
             }
@@ -87,7 +87,7 @@ namespace vitalapi.Controllers
 
         private bool AssinaturaExists(int id)
         {
-            return _context.Assinaturas.Any(e => e.ID == id);
+            return _context.Assinaturas.Any(e => e.Id == id);
         }
 
     }

@@ -8,49 +8,49 @@ namespace vitalapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class PlanoController : ControllerBase
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
 
-        public UsuarioController(vitalcontext vitalcontext)
+        public PlanoController(VitalContext vitalcontext)
         {
             _context = vitalcontext;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
+        public async Task<ActionResult<IEnumerable<Plano>>> GetPlano()
         {
-            return await _context.Usuarios.ToListAsync();
+            return await _context.Planos.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetUsuario(int id)
+        public async Task<ActionResult<Plano>> GetPlano(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var plano = await _context.Planos.FindAsync(id);
 
-            if (usuario == null)
+            if (plano == null)
             {
                 return NotFound();
             }
 
-            return usuario;
+            return plano;
         }
         [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
+        public async Task<ActionResult<Plano>> PostPlano(Plano plano)
         {
-            _context.Usuarios.Add(usuario);
+            _context.Planos.Add(plano);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(GetPlano), new { id = plano.Id }, plano);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        public async Task<IActionResult> PutPlano(int id, Plano plano)
         {
-            if (id != usuario.Id)
+            if (id != plano.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(usuario).State = EntityState.Modified;
+            _context.Entry(plano).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace vitalapi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioExists(id))
+                if (!PlanoExists(id))
                 {
                     return NotFound();
                 }
@@ -71,23 +71,23 @@ namespace vitalapi.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(int id)
+        public async Task<IActionResult> DeletePlano(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
+            var plano = await _context.Planos.FindAsync(id);
+            if (plano == null)
             {
                 return NotFound();
             }
 
-            _context.Usuarios.Remove(usuario);
+            _context.Planos.Remove(plano);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UsuarioExists(int id)
+        private bool PlanoExists(int id)
         {
-            return _context.Usuarios.Any(e => e.Id == id);
+            return _context.Planos.Any(e => e.Id == id);
         }
 
     }

@@ -10,11 +10,11 @@ namespace vitalapi.Controllers
     [ApiController]
     public class EspecialistaController : ControllerBase
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
 
-        public EspecialistaController(vitalcontext context)
+        public EspecialistaController(VitalContext vitalcontext)
         {
-            _context = context;
+            _context = vitalcontext;
         }
 
         // GET: api/disponibilidade

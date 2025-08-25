@@ -10,9 +10,9 @@ namespace vitalapi.Controllers
     [ApiController]
     public class AgendamentoController : ControllerBase
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
 
-        public AgendamentoController(vitalcontext vitalcontext)
+        public AgendamentoController(VitalContext vitalcontext)
         {
             _context = vitalcontext;
         }
@@ -40,12 +40,12 @@ namespace vitalapi.Controllers
             _context.Agendamentos.Add(agendamento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAgendamento), new { id = agendamento.ID }, agendamento);
+            return CreatedAtAction(nameof(GetAgendamento), new { id = agendamento.Id }, agendamento);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAssinatura(int id, Agendamento agendamento)
         {
-            if (id != agendamento.ID)
+            if (id != agendamento.Id)
             {
                 return BadRequest();
             }
@@ -88,7 +88,7 @@ namespace vitalapi.Controllers
 
         private bool AgendamentosExists(int id)
         {
-            return _context.Agendamentos.Any(e => e.ID == id);
+            return _context.Agendamentos.Any(e => e.Id == id);
         }
 
     }
