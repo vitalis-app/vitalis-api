@@ -28,7 +28,7 @@ else
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 32));
 
-builder.Services.AddDbContext<vitalcontext>(options =>
+builder.Services.AddDbContext<VitalContext>(options =>
     options.UseMySql(connectionString, serverVersion)
 );
 

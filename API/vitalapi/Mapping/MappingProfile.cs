@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using vitalapi.DTO_S;
 using vitalapi.Models;
+using vitalapi.Models.Usuario;
 
 namespace vitalapi.Mapping
 {

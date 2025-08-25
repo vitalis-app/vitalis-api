@@ -7,12 +7,12 @@ namespace vitalapi.Services
 {
     public class EnderecoService
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
         private readonly IMapper _mapper;
 
-        public EnderecoService(vitalcontext context, IMapper mapper)
+        public EnderecoService(VitalContext vitalcontext, IMapper mapper)
         {
-            _context = context;
+            _context = vitalcontext;
             _mapper = mapper;
         }
 

@@ -10,8 +10,8 @@ using vitalapi.Context;
 
 namespace vitalapi.Migrations
 {
-    [DbContext(typeof(vitalcontext))]
-    partial class vitalcontextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(VitalContext))]
+    partial class VitalContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -24,11 +24,11 @@ namespace vitalapi.Migrations
 
             modelBuilder.Entity("vitalapi.Models.Agendamento", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DataHora")
                         .HasColumnType("longtext");
@@ -39,18 +39,18 @@ namespace vitalapi.Migrations
                     b.Property<string>("ValorPago")
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Agendamentos");
                 });
 
             modelBuilder.Entity("vitalapi.Models.Assinatura", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ID"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DataInicio")
                         .HasColumnType("longtext");
@@ -64,7 +64,7 @@ namespace vitalapi.Migrations
                     b.Property<string>("Vencimento")
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Assinaturas");
                 });
@@ -154,8 +154,8 @@ namespace vitalapi.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("ValorConsulta")
-                        .HasColumnType("double");
+                    b.Property<decimal>("ValorConsulta")
+                        .HasColumnType("decimal");
 
                     b.HasKey("Id");
 
@@ -179,8 +179,8 @@ namespace vitalapi.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("double");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal");
 
                     b.Property<string>("Tipo")
                         .HasColumnType("longtext");

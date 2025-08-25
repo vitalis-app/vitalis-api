@@ -7,12 +7,12 @@ namespace vitalapi.Services
 {
     public class DisponibilidadeService
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
         private readonly IMapper _mapper;
 
-        public DisponibilidadeService(vitalcontext context, IMapper mapper)
+        public DisponibilidadeService(VitalContext vitalcontext, IMapper mapper)
         {
-            _context = context;
+            _context = vitalcontext;
             _mapper = mapper;
         }
 

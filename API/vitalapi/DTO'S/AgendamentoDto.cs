@@ -2,7 +2,7 @@
 {
     public class AgendamentoDto
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string DataHora { get; set; }
         public string Status { get; set; }
         public string ValorPago { get; set; }

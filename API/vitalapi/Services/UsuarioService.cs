@@ -2,17 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.DTO_S;
-using vitalapi.Models;
+using vitalapi.Models.Usuario;
 namespace vitalapi.Services
 {
     public class UsuarioService
     {
-        private readonly vitalcontext _context;
+        private readonly VitalContext _context;
         private readonly IMapper _mapper;
 
-        public UsuarioService(vitalcontext context, IMapper mapper)
+        public UsuarioService(VitalContext vitalcontext, IMapper mapper)
         {
-            _context = context;
+            _context = vitalcontext;
             _mapper = mapper;
         }
 

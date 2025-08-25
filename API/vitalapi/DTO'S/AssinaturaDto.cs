@@ -2,7 +2,7 @@
 {
     public class AssinaturaDto
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string DataInicio { get; set; }
         public string Vencimento { get; set; }
         public string Status { get; set; }

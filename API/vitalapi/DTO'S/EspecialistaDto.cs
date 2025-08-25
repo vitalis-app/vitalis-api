@@ -9,7 +9,7 @@
         public string Descricao { get; set; }
         public string CRP { get; set; }
         public string Biografia { get; set; }
-        public double ValorConsulta { get; set; }
+        public decimal ValorConsulta { get; set; }
     }
     public class CreateEspecialistaDto
     {
@@ -19,12 +19,12 @@
         public string Descricao { get; set; }
         public string CRP { get; set; }
         public string Biografia { get; set; }
-        public double ValorConsulta { get; set; }
+        public decimal ValorConsulta { get; set; }
     }
     public class UpdateEspecialistaDto
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public double ValorConsulta { get; set; }
+        public decimal ValorConsulta { get; set; }
     }
 }

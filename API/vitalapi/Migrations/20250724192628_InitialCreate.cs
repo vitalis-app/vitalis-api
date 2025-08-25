@@ -19,7 +19,7 @@ namespace vitalapi.Migrations
                 name: "Agendamentos",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DataHora = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -30,7 +30,7 @@ namespace vitalapi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agendamentos", x => x.ID);
+                    table.PrimaryKey("PK_Agendamentos", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -38,7 +38,7 @@ namespace vitalapi.Migrations
                 name: "Assinaturas",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DataInicio = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -50,7 +50,7 @@ namespace vitalapi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assinaturas", x => x.ID);
+                    table.PrimaryKey("PK_Assinaturas", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -120,7 +120,7 @@ namespace vitalapi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Biografia = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ValorConsulta = table.Column<double>(type: "double", nullable: false)
+                    ValorConsulta = table.Column<decimal>(type: "decimal", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -138,7 +138,7 @@ namespace vitalapi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Descricao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Preco = table.Column<double>(type: "double", nullable: false),
+                    Preco = table.Column<decimal>(type: "decimal", nullable: false),
                     Tipo = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Funcionalidades = table.Column<string>(type: "longtext", nullable: true)

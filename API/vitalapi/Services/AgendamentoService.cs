@@ -10,12 +10,12 @@ using vitalapi.Models;
 
 public class AgendamentoService
 {
-    private readonly vitalcontext _context;
+    private readonly VitalContext _context;
     private readonly IMapper _mapper;
 
-    public AgendamentoService(vitalcontext context, IMapper mapper)
+    public AgendamentoService(VitalContext vitalcontext, IMapper mapper)
     {
-        _context = context;
+        _context = vitalcontext;
         _mapper = mapper;
     }
 
