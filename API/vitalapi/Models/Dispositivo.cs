@@ -1,6 +1,6 @@
 ﻿namespace vitalapi.Models
 {
-    public class DispositivoConectado
+    public class Dispositivo
     {
         int Id { get; set; }
         string Nome { get; set; }

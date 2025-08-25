@@ -3,9 +3,8 @@
     public class Disponibilidade
     {
         public int Id { get; set; }
-        public string HorarioInicio { get; set; }
-        public string HorarioFim { get; set; }
-        public string DiaSemana { get; set; } // Ex: "Segunda", "Terça", etc.
-
+        public DateTime HorarioInicio { get; set; }
+        public DateTime HorarioFim { get; set; }
+        public DayOfWeek DiaSemana { get; set; }
     }
 }

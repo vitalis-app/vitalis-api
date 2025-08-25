@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using vitalapi.Models.Usuario;
 
 namespace vitalapi.Models
 {
@@ -12,6 +13,9 @@ namespace vitalapi.Models
         public string Foto { get; set; }
         public DateTime DataPlantio { get; set; }
         public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+        public Usuario.Usuario Usuario { get; set; }
+
+        public DateTime UltimaRega { get; set; }
+        public bool PodeRegar => UltimaRega.Date < DateTime.Today;
     }
 }
