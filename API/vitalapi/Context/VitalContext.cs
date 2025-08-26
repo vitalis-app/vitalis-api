@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using vitalapi.Models;
+using vitalapi.Models.Especialista;
+using vitalapi.Models.Assinatura;
 using vitalapi.Models.Usuario;
+using vitalapi.Models.Midia;
+using vitalapi.Models.Usuario.Conquistas;
 
 namespace vitalapi.Context
 {
@@ -12,7 +15,7 @@ namespace vitalapi.Context
 
         public DbSet<Disponibilidade> Disponibilidades { get; set; }
         public DbSet<Assinatura> Assinaturas { get; set; }
-        public DbSet<Agendamento> Agendamentos { get; set; }
+        public DbSet<Agendamento> Especialista { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Especialista> Especialistas { get; set; }
         public DbSet<Plano> Planos { get; set; }
