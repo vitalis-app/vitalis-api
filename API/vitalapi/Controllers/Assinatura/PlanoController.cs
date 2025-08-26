@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models;
+using vitalapi.Models.Assinatura;
 
-namespace vitalapi.Controllers
+namespace vitalapi.Controllers.Assinatura
 {
     [Route("api/[controller]")]
     [ApiController]

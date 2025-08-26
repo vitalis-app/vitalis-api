@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models;
+using vitalapi.Models.Usuario;
 
 namespace vitalapi.Controllers
 {

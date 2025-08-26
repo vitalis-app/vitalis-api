@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models;
+using vitalapi.Models.Midia;
 
 [ApiController]
 [Route("api/[controller]")]

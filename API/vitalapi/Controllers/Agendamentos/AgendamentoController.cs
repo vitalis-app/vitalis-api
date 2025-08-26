@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models;
+using vitalapi.Models.Especialista;
 
-namespace vitalapi.Controllers
+namespace vitalapi.Controllers.Especialista
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,13 +19,13 @@ namespace vitalapi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Agendamento>>> GetAgendamento()
         {
-            return await _context.Agendamentos.ToListAsync();
+            return await _context.Especialista.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Agendamento>> GetAgendamento(int id)
         {
-            var agendamento = await _context.Agendamentos.FindAsync(id);
+            var agendamento = await _context.Especialista.FindAsync(id);
 
             if (agendamento == null)
             {
@@ -37,7 +37,7 @@ namespace vitalapi.Controllers
         [HttpPost]
         public async Task<ActionResult<Agendamento>> Postagendamento(Agendamento agendamento)
         {
-            _context.Agendamentos.Add(agendamento);
+            _context.Especialista.Add(agendamento);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetAgendamento), new { id = agendamento.Id }, agendamento);
@@ -58,7 +58,7 @@ namespace vitalapi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AgendamentosExists(id))
+                if (!EspecialistaExists(id))
                 {
                     return NotFound();
                 }
@@ -73,22 +73,22 @@ namespace vitalapi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAgendamento(int id)
         {
-            var agendamento = await _context.Agendamentos.FindAsync(id);
+            var agendamento = await _context.Especialista.FindAsync(id);
 
             if (agendamento == null)
             {
                 return NotFound();
             }
 
-            _context.Agendamentos.Remove(agendamento);
+            _context.Especialista.Remove(agendamento);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AgendamentosExists(int id)
+        private bool EspecialistaExists(int id)
         {
-            return _context.Agendamentos.Any(e => e.Id == id);
+            return _context.Especialista.Any(e => e.Id == id);
         }
 
     }

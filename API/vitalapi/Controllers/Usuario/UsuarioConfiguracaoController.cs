@@ -1,0 +1,1 @@
+//dispositivo conectado, notificacao, perfil (data nascimento, foto, etc)

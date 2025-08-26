@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models;
+using vitalapi.Models.Usuario.Conquistas;
 
-namespace vitalapi.Controllers
+namespace vitalapi.Controllers.EstacaoVital
 {
     [Route("api/[controller]")]
     [ApiController]

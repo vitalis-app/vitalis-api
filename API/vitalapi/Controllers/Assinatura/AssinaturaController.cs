@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.Models;
 
-namespace vitalapi.Controllers
+namespace vitalapi.Controllers.Assinatura
 {
     [Route("api/[controller]")]
     [ApiController]
