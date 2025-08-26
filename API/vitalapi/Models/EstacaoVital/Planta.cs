@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using vitalapi.Models.Usuario;
 
-namespace vitalapi.Models
+namespace vitalapi.Models.EstacaoVital
 {
     public class Planta
     {

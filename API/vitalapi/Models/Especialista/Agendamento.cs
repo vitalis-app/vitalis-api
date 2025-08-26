@@ -1,4 +1,4 @@
-﻿namespace vitalapi.Models
+﻿namespace vitalapi.Models.Especialista
 {
     public class Agendamento
     {

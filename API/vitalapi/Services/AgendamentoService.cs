@@ -3,10 +3,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.DTO_S;
-using vitalapi.Models;
-
-
-
+using vitalapi.Models.Especialista;
 
 public class AgendamentoService
 {
@@ -21,27 +18,27 @@ public class AgendamentoService
 
     public async Task<IEnumerable<AgendamentoDto>> GetAllAsync()
     {
-        var items = await _context.Agendamentos.ToListAsync();
+        var items = await _context.Especialista.ToListAsync();
         return _mapper.Map<IEnumerable<AgendamentoDto>>(items);
     }
 
     public async Task<AgendamentoDto> GetByIdAsync(int id)
     {
-        var item = await _context.Agendamentos.FindAsync(id);
+        var item = await _context.Especialista.FindAsync(id);
         return _mapper.Map<AgendamentoDto>(item);
     }
 
     public async Task<AgendamentoDto> CreateAsync(CreateAgendamentoDto dto)
     {
         var entity = _mapper.Map<Agendamento>(dto);
-        _context.Agendamentos.Add(entity);
+        _context.Especialista.Add(entity);
         await _context.SaveChangesAsync();
         return _mapper.Map<AgendamentoDto>(entity);
     }
 
     public async Task<bool> UpdateAsync(int id, UpdateAgendamentoDto dto)
     {
-        var entity = await _context.Agendamentos.FindAsync(id);
+        var entity = await _context.Especialista.FindAsync(id);
         if (entity == null) return false;
 
         _mapper.Map(dto, entity);
@@ -51,10 +48,10 @@ public class AgendamentoService
 
     public async Task<bool> DeleteAsync(int id)
     {
-        var entity = await _context.Agendamentos.FindAsync(id);
+        var entity = await _context.Especialista.FindAsync(id);
         if (entity == null) return false;
 
-        _context.Agendamentos.Remove(entity);
+        _context.Especialista.Remove(entity);
         await _context.SaveChangesAsync();
         return true;
     }

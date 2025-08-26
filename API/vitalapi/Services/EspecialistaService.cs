@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.DTO_S;
-using vitalapi.Models;
+using vitalapi.Models.Especialista;
 namespace vitalapi.Services
 {
     public class EspecialistaService

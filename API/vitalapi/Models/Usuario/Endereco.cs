@@ -1,4 +1,4 @@
-﻿namespace vitalapi.Models
+﻿namespace vitalapi.Models.Usuario
 {
     public class Endereco
     {
@@ -11,6 +11,5 @@
         public string Estado { get; set; }
         public string Complemento { get; set; }
         public string Pais { get; set; }
-
     }
 }

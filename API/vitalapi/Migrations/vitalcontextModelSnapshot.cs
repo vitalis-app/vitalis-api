@@ -41,7 +41,7 @@ namespace vitalapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agendamentos");
+                    b.ToTable("Especialista");
                 });
 
             modelBuilder.Entity("vitalapi.Models.Assinatura", b =>

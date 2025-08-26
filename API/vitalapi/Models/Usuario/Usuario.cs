@@ -1,20 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using vitalapi.Models.Assinatura;
+using vitalapi.Models.EstacaoVital;
+using vitalapi.Models.Pessoa;
 
 namespace vitalapi.Models.Usuario
 {
-    public class Usuario
+    public class Usuario : PessoaBase
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; } // TO-DO: Fazer hash da senha
-        public bool Ativo { get; set; }
-        public DateTime DataCriacao { get; set; }
-        public UsuarioPerfil Perfil { get; set; }
         public UsuarioProgresso Progresso { get; set; }
-        public ConfiguracoesUsuario Configuracoes { get; set; }
         public Planta PlantaAtual { get; set; }
         public List<Planta> Jardim { get; set; } = new();
+        public UsuarioConfiguracao Configuracoes { get; set; }
+
+        public int PlanoId { get; set; }
+        public Plano Plano { get; set; }
 
         public void RegistrarAtividade()
         {

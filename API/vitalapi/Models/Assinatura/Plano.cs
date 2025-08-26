@@ -1,4 +1,4 @@
-﻿namespace vitalapi.Models
+﻿namespace vitalapi.Models.Assinatura
 {
     public class Plano
     {

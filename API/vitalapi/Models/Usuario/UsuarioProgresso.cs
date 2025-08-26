@@ -1,3 +1,6 @@
+using vitalapi.Models.Midia;
+using vitalapi.Models.Usuario.Conquistas;
+
 namespace vitalapi.Models.Usuario
 {
     public class UsuarioProgresso

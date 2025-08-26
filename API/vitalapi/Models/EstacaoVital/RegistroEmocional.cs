@@ -1,5 +1,5 @@
 using System.Numerics;
-
+namespace vitalapi.Models.EstacaoVital;
 public class RegistroEmocional
 {
     const int XPBase = 100;

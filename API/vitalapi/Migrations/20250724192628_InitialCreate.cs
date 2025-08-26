@@ -16,7 +16,7 @@ namespace vitalapi.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Agendamentos",
+                name: "Especialista",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -30,7 +30,7 @@ namespace vitalapi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agendamentos", x => x.Id);
+                    table.PrimaryKey("PK_Especialista", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -185,7 +185,7 @@ namespace vitalapi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Agendamentos");
+                name: "Especialista");
 
             migrationBuilder.DropTable(
                 name: "Assinaturas");
