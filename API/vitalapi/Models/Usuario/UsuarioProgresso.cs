@@ -1,14 +1,17 @@
+using vitalapi.Models.Conquistas;
 using vitalapi.Models.Midia;
-using vitalapi.Models.Usuario.Conquistas;
 
 namespace vitalapi.Models.Usuario
 {
     public class UsuarioProgresso
     {
         public int Id { get; set; }
+
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+
         public int XPTotal { get; set; }
         public int DiasAtivosStreak { get; set; }
-        public List<Conquista> Conquistas { get; set; } = new();
         public DateTime? UltimaAtividade { get; set; }
         public int QuantidadeCheckins { get; set; }
         public int TempoMedioUsuario { get; set; }
@@ -20,15 +23,43 @@ namespace vitalapi.Models.Usuario
             .FirstOrDefault()
             .Key;
 
-        public List<Video> VideosAssistidos { get; set; } = new();
+        public ICollection<Conquista> Conquistas { get; set; }
+
+        public ICollection<Video> VideosAssistidos { get; set; }
         public int QuantidadeVideosAssistidos => VideosAssistidos?.Count ?? 0;
 
-        public List<UsuarioSessao> SessoesUsuario { get; set; } = new();
+        public ICollection<UsuarioSessao> SessoesUsuario { get; set; }
         public int QuantidadeSessoes => SessoesUsuario?.Count ?? 0;
 
 
-        public int UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+        public void RegistrarAtividade()
+        {
+            var hoje = DateTime.Today;
 
+            if (UltimaAtividade == null)
+            {
+                DiasAtivosStreak = 1;
+            }
+
+            else
+            {
+                var ultimaAtividade = UltimaAtividade.Value.Date;
+
+                if (ultimaAtividade == hoje)
+                {
+                    return;
+                }
+                else if (ultimaAtividade == hoje.AddDays(-1))
+                {
+                    DiasAtivosStreak += 1;
+                }
+                else
+                {
+                    DiasAtivosStreak = 1;
+                }
+            }
+
+            UltimaAtividade = hoje;
+        }
     }
 }

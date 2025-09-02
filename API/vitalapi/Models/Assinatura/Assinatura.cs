@@ -1,4 +1,7 @@
-﻿namespace vitalapi.Models.Assinatura
+﻿
+using UsuarioModel = vitalapi.Models.Usuario.Usuario;
+
+namespace vitalapi.Models.Assinatura
 {
     public class Assinatura
     {
@@ -6,6 +9,12 @@
         public DateTime DataInicio { get; set; }
         public DateTime Vencimento { get; set; }
         public Status StatusAtual { get; set; }
-        public bool Pago { get; set; }   
+        public bool Pago { get; set; }
+
+        public int UsuarioId { get; set; }
+        public UsuarioModel Usuario { get; set; }
+
+        public int PlanoId { get; set; }
+        public Plano Plano { get; set; }
     }
 }

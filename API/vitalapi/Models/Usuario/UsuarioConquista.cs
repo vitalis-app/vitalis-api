@@ -1,0 +1,16 @@
+using vitalapi.Models.Conquistas;
+using vitalapi.Models.Usuario;
+
+public class UsuarioConquista
+{
+    public int ID { get; set; }
+    public int UsuarioId { get; set; }
+    public Usuario Usuario { get; set; }
+
+    public int ConquistaId { get; set; }
+    public Conquista Conquista { get; set; }
+
+    public int ProgressoConquista { get; set; }
+    public DateTime DataConquista { get; set; }
+    public StatusConquista StatusConquista { get; set; }
+}

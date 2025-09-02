@@ -1,4 +1,4 @@
-namespace vitalapi.Models.Usuario.Conquistas
+namespace vitalapi.Models.Conquistas
 {
     public class ProgressoConquistaUsuario
     {
