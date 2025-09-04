@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 using vitalapi.Models.Assinatura;
 using vitalapi.Models.Configuracao;
 using vitalapi.Models.Conquistas;
@@ -15,7 +16,7 @@ namespace vitalapi.Context
 
 
         public DbSet<Especialista> Especialistas { get; set; }
-        
+
 
         public DbSet<Disponibilidade> Disponibilidades { get; set; }
         public DbSet<Agendamento> Agendamentos { get; set; }
@@ -23,7 +24,7 @@ namespace vitalapi.Context
 
         public DbSet<Assinatura> Assinaturas { get; set; }
         public DbSet<Plano> Planos { get; set; }
-        
+
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<UsuarioProgresso> UsuarioProgressos { get; set; }
@@ -35,7 +36,7 @@ namespace vitalapi.Context
         public DbSet<Conquista> Conquistas { get; set; }
         public DbSet<Planta> Plantas { get; set; }
         public DbSet<RegistroEmocional> RegistrosEmocionais { get; set; }
-        
+
         public DbSet<Video> Videos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,6 +52,15 @@ namespace vitalapi.Context
 
             modelBuilder.Entity<Especialista>()
                 .OwnsOne(e => e.Configuracoes);
+
+            //modelBuilder.Entity<Usuario>()
+            //  .OwnsOne(u => u.Configuracoes, cfg =>
+            //   {
+            //       cfg.Property(c => c.DispositivosConectados)
+            //          .HasConversion(
+            //              v => JsonSerializer.Serialize<List<Dispositivo>>(v),
+            //              v => JsonSerializer.Deserialize<List<Dispositivo>>(v) ?? new List<Dispositivo>());
+            //   });
         }
     }
 }
