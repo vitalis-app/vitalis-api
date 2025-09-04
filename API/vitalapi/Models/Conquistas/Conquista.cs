@@ -1,13 +1,10 @@
-using UsuarioModel = vitalapi.Models.Usuario.Usuario;
-
 namespace vitalapi.Models.Conquistas
 {
     public class Conquista
     {
         public int Id { get; set; }
 
-        public int UsuarioId { get; set; }
-        public UsuarioModel Usuario { get; set; }
+        public ICollection<UsuarioConquista> UsuariosConquistas { get; set; }
 
         public string Titulo { get; set; }
         public string Descricao { get; set; }

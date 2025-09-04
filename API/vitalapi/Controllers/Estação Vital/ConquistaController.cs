@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models.Usuario.Conquistas;
+using vitalapi.Models.Conquistas;
 
 namespace vitalapi.Controllers.EstacaoVital
 {

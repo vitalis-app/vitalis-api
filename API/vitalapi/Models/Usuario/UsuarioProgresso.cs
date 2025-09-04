@@ -23,13 +23,10 @@ namespace vitalapi.Models.Usuario
             .FirstOrDefault()
             .Key;
 
-        public ICollection<Conquista> Conquistas { get; set; }
+        public ICollection<UsuarioConquista> UsuariosConquistas { get; set; }
 
-        public ICollection<Video> VideosAssistidos { get; set; }
-        public int QuantidadeVideosAssistidos => VideosAssistidos?.Count ?? 0;
-
-        public ICollection<UsuarioSessao> SessoesUsuario { get; set; }
-        public int QuantidadeSessoes => SessoesUsuario?.Count ?? 0;
+        public int QuantidadeVideosAssistidos => Usuario.VideosAssistidos?.Count ?? 0;
+        public int QuantidadeSessoes => Usuario.SessoesUsuario?.Count ?? 0;
 
 
         public void RegistrarAtividade()
