@@ -11,7 +11,7 @@ namespace vitalapi.Models.Usuario
         public UsuarioProgresso Progresso { get; set; }
 
         public AssinaturaModel AssinaturaAtiva { get; set; }
-        public int? AssinaturaAtivaId { get; set; }
+        public int AssinaturaAtivaId { get; set; }
 
         public ICollection<Video> VideosAssistidos { get; set; }
         public ICollection<UsuarioSessao> SessoesUsuario { get; set; }
