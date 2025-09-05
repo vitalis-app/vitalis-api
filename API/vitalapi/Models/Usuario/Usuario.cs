@@ -13,13 +13,13 @@ namespace vitalapi.Models.Usuario
         public AssinaturaModel AssinaturaAtiva { get; set; }
         public int AssinaturaAtivaId { get; set; }
 
-        public ICollection<Video> VideosAssistidos { get; set; }
-        public ICollection<UsuarioSessao> SessoesUsuario { get; set; }
-        public ICollection<UsuarioPlanta> UsuarioPlantas { get; set; }
-        public ICollection<Agendamento> Agendamentos { get; set; }
-        public ICollection<RegistroEmocional> RegistrosEmocionais { get; set; }
-
         public UsuarioConfiguracao Configuracoes { get; set; }
 
+            public ICollection<Video> VideosAssistidos { get; set; } = new List<Video>();
+            public ICollection<UsuarioSessao> SessoesUsuario { get; set; } = new List<UsuarioSessao>();
+            public ICollection<UsuarioPlanta> UsuarioPlantas { get; set; } = new List<UsuarioPlanta>();
+            public ICollection<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
+            public ICollection<RegistroEmocional> RegistrosEmocionais { get; set; } = new List<RegistroEmocional>();
+        public ICollection<UsuarioMissao> Missoes { get; set; } = new List<UsuarioMissao>();
     }
 }
