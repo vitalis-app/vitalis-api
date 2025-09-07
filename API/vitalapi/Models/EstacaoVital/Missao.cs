@@ -1,4 +1,6 @@
-﻿namespace vitalapi.Models.EstacaoVital
+﻿using vitalapi.Models.Usuario;
+
+namespace vitalapi.Models.EstacaoVital
 {
     public class Missao
     {
