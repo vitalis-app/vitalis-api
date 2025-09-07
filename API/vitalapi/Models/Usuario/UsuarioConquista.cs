@@ -13,5 +13,5 @@ public class UsuarioConquista
 
     public int ProgressoConquista { get; set; }
     public DateTime DataConclusao { get; set; }
-    public StatusConquista StatusConquista { get; set; }
+    public StatusPendencia StatusConquista { get; set; }
 }

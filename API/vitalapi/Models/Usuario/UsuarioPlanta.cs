@@ -10,6 +10,7 @@ namespace vitalapi.Models.Usuario
         public int PlantaId { get; set; }
         public Planta Planta { get; set; }
 
+        public string Nome { get; set; }
         public DateTime DataPlantio { get; set; }
         public DateTime UltimaRega { get; set; }
         public bool PodeRegar => UltimaRega.Date < DateTime.Today;
