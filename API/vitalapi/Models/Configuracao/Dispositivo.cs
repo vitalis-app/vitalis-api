@@ -2,7 +2,8 @@
 {
     public class Dispositivo
     {
-        string Nome { get; set; }
-        TipoDispositivo TipoDispositivo { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public TipoDispositivo TipoDispositivo { get; set; }
     }
 }
