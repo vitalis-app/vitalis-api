@@ -1,9 +1,8 @@
 ﻿namespace vitalapi.DTO_S
 {
-    public class RegistroEmocionalDto
+    public class RegistroEmocionalCreateDto
     {
-    }
-    public class CreateRegistroEmocionalDto
-    {
+        public Humor HumorRegistrado { get; set; }
+        public string ConfissaoUsuario { get; set; }
     }
 }

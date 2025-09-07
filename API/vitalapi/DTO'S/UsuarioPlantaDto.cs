@@ -1,12 +1,13 @@
 ﻿namespace vitalapi.DTO_S
 {
-    public class UsuarioPlantaDto
+    public class UsuarioPlantaReadDto
     {
+        public string Nome { get; set; }
+        public int Nivel { get; set; }
+        public int XP { get; set; }
     }
-    public class ReadUsuarioPlantaDto
+    public class UsuarioPlantaUpdateDto
     {
-    }
-    public class UpdateUsuarioPlantaDto
-    {
+        public string Nome { get; set; }
     }
 }

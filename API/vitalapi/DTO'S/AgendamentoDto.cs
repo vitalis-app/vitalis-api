@@ -1,27 +1,27 @@
-﻿namespace vitalapi.DTO_S
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace vitalapi.DTO_S
 {
     public class AgendamentoDto
     {
-        public int Id { get; set; }
-        public string DataHora { get; set; }
-        public string Status { get; set; }
-        public string ValorPago { get; set; }
     }
-    public class CreateAgendamentoDto
+
+    public class AgendamentoCreateDto
     {
-        public string DataHora { get; set; }
-        public string Status { get; set; }
-        public string ValorPago { get; set; }
+        [Required]
+        public int EspecialistaId { get; set; }
+        [Required]
+        public DateTime DataHora { get; set; }
     }
-    public class ReadAgendamentoDto
+    public class AgendamentoReadDto
     {
         public int EspecialistaId { get; set; }
+        public string EspecialistaNome { get; set; }
         public DateTime DataHora { get; set; }
-        public string Status { get; set; }
+        public StatusPendencia Status { get; set; }
     }
-    public class UpdateAgendamentoDto
+    public class AgendamentoUpdateDto
     {
-        public string Status { get; set; }
-        public string ValorPago { get; set; }
+        public StatusPendencia Status { get; set; }
     }
 }

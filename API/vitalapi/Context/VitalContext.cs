@@ -31,6 +31,7 @@ namespace vitalapi.Context
         public DbSet<UsuarioSessao> UsuarioSessoes { get; set; }
         public DbSet<UsuarioConquista> UsuarioConquistas { get; set; }
         public DbSet<UsuarioPlanta> UsuarioPlantas { get; set; }
+        public DbSet<UsuarioMissao> UsuarioMissoes { get; set; }
 
 
         public DbSet<Conquista> Conquistas { get; set; }
