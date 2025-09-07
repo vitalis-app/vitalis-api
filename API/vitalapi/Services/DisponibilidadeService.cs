@@ -16,27 +16,27 @@ namespace vitalapi.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<DisponibilidadeDto>> GetAllAsync()
+        public async Task<IEnumerable<DisponibilidadeReadDto>> GetAllAsync()
         {
             var items = await _context.Disponibilidades.ToListAsync();
-            return _mapper.Map<IEnumerable<DisponibilidadeDto>>(items);
+            return _mapper.Map<IEnumerable<DisponibilidadeReadDto>>(items);
         }
 
-        public async Task<DisponibilidadeDto> GetByIdAsync(int id)
+        public async Task<DisponibilidadeReadDto> GetByIdAsync(int id)
         {
             var item = await _context.Disponibilidades.FindAsync(id);
-            return _mapper.Map<DisponibilidadeDto>(item);
+            return _mapper.Map<DisponibilidadeReadDto>(item);
         }
 
-        public async Task<DisponibilidadeDto> CreateAsync(CreateDisponibilidadeDto dto)
+        public async Task<DisponibilidadeCreateDto> CreateAsync(DisponibilidadeCreateDto dto)
         {
             var entity = _mapper.Map<Disponibilidade>(dto);
             _context.Disponibilidades.Add(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<DisponibilidadeDto>(entity);
+            return _mapper.Map<DisponibilidadeCreateDto>(entity);
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateDisponibilidadeDto dto)
+        public async Task<bool> UpdateAsync(int id, DisponibilidadeUpdateDto dto)
         {
             var entity = await _context.Disponibilidades.FindAsync(id);
             if (entity == null) return false;

@@ -9,9 +9,7 @@ namespace vitalapi.Models.Assinatura
         public DateTime DataInicio { get; set; }
         public DateTime Vencimento { get; set; }
         public Status StatusAtual { get; set; }
-        public bool Pago { get; set; }
-
         public int PlanoId { get; set; }
         public Plano Plano { get; set; }
-    }
+    } 
 }

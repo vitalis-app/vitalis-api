@@ -16,19 +16,13 @@ public class AgendamentoService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<AgendamentoDto>> GetAllAsync()
+    public async Task<IEnumerable<AgendamentoReadDto>> GetAllAsync()
     {
         var items = await _context.Agendamentos.ToListAsync();
-        return _mapper.Map<IEnumerable<AgendamentoDto>>(items);
+        return _mapper.Map<IEnumerable<AgendamentoReadDto>>(items);
     }
 
-    public async Task<AgendamentoDto> GetByIdAsync(int id)
-    {
-        var item = await _context.Agendamentos.FindAsync(id);
-        return _mapper.Map<AgendamentoDto>(item);
-    }
-
-    public async Task<AgendamentoDto> CreateAsync(CreateAgendamentoDto dto)
+    public async Task<AgendamentoDto> CreateAsync(AgendamentoCreateDto dto)
     {
         var entity = _mapper.Map<Agendamento>(dto);
         _context.Agendamentos.Add(entity);
@@ -36,7 +30,7 @@ public class AgendamentoService
         return _mapper.Map<AgendamentoDto>(entity);
     }
 
-    public async Task<bool> UpdateAsync(int id, UpdateAgendamentoDto dto)
+    public async Task<bool> UpdateAsync(int id, AgendamentoUpdateDto dto)
     {
         var entity = await _context.Agendamentos.FindAsync(id);
         if (entity == null) return false;

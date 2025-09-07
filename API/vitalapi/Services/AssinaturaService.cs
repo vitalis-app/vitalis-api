@@ -16,27 +16,27 @@ namespace vitalapi.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<AssinaturaDto>> GetAllAsync()
+        public async Task<IEnumerable<AssinaturaReadDto>> GetAllAsync()
         {
             var items = await _context.Assinaturas.ToListAsync();
-            return _mapper.Map<IEnumerable<AssinaturaDto>>(items);
+            return _mapper.Map<IEnumerable<AssinaturaReadDto>>(items);
         }
 
-        public async Task<AssinaturaDto> GetByIdAsync(int id)
+        public async Task<AssinaturaReadDto> GetByIdAsync(int id)
         {
             var item = await _context.Assinaturas.FindAsync(id);
-            return _mapper.Map<AssinaturaDto>(item);
+            return _mapper.Map<AssinaturaReadDto>(item);
         }
 
-        public async Task<AssinaturaDto> CreateAsync(CreateAssinaturaDto dto)
+        public async Task<AssinaturaCreateDto> CreateAsync(AssinaturaCreateDto dto)
         {
             var entity = _mapper.Map<Assinatura>(dto);
             _context.Assinaturas.Add(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<AssinaturaDto>(entity);
+            return _mapper.Map<AssinaturaCreateDto>(entity);
         }
 
-        public async Task<bool> UpdateAsync(int id, UpdateAssinaturaDto dto)
+        public async Task<bool> UpdateAsync(int id, AssinaturaUpdateDto dto)
         {
             var entity = await _context.Assinaturas.FindAsync(id);
             if (entity == null) return false;
