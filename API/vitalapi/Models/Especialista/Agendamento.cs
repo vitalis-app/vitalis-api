@@ -14,7 +14,7 @@ namespace vitalapi.Models.Especialista
         public Especialista Especialista { get; set; }
 
         public DateTime DataHora { get; set; }
-        public Status StatusAtual { get; set; }
+        public StatusPendencia StatusAtual { get; set; }
         public decimal ValorPago { get; set; }
     }
 }

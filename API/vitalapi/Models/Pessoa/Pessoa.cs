@@ -10,7 +10,6 @@ namespace vitalapi.Models.Pessoa
         public DateTime DataNascimento { get; set; }
         public Genero Genero { get; set; }
         public string FotoPerfil { get; set; }
-        public bool Ativo { get; set; }
         public DateTime DataCriacao { get; set; }
     }
 }
