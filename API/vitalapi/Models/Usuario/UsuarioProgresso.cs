@@ -16,12 +16,7 @@ namespace vitalapi.Models.Usuario
         public int QuantidadeCheckins { get; set; }
         public int TempoMedioUsuario { get; set; }
 
-        public List<Humor> ListaHumores { get; set; } = new();
-        public Humor HumorFrequente => ListaHumores
-            .GroupBy(x => x)
-            .OrderByDescending(x => x.Count())
-            .FirstOrDefault()
-            .Key;
+        public ICollection<UsuarioHumor> Humores { get; set; } = new List<UsuarioHumor>();
 
         public ICollection<UsuarioConquista> UsuariosConquistas { get; set; }
 

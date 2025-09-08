@@ -1,4 +1,6 @@
-﻿namespace vitalapi.Models.Usuario
+﻿using vitalapi.Models.Midia;
+
+namespace vitalapi.Models.Usuario
 {
     public class UsuarioVideo
     {

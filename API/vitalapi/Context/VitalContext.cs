@@ -14,18 +14,6 @@ namespace vitalapi.Context
     {
         public VitalContext(DbContextOptions<VitalContext> options) : base(options) { }
 
-
-        public DbSet<Especialista> Especialistas { get; set; }
-
-
-        public DbSet<Disponibilidade> Disponibilidades { get; set; }
-        public DbSet<Agendamento> Agendamentos { get; set; }
-
-
-        public DbSet<Assinatura> Assinaturas { get; set; }
-        public DbSet<Plano> Planos { get; set; }
-
-
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<UsuarioProgresso> UsuarioProgressos { get; set; }
         public DbSet<UsuarioSessao> UsuarioSessoes { get; set; }
@@ -33,35 +21,48 @@ namespace vitalapi.Context
         public DbSet<UsuarioPlanta> UsuarioPlantas { get; set; }
         public DbSet<UsuarioMissao> UsuarioMissoes { get; set; }
 
+        public DbSet<Especialista> Especialistas { get; set; }
+        public DbSet<Disponibilidade> Disponibilidades { get; set; }
+        public DbSet<Agendamento> Agendamentos { get; set; }
+
+        public DbSet<Plano> Planos { get; set; }
+        public DbSet<Assinatura> Assinaturas { get; set; }
 
         public DbSet<Conquista> Conquistas { get; set; }
+        public DbSet<Missao> Missoes { get; set; }
         public DbSet<Planta> Plantas { get; set; }
         public DbSet<RegistroEmocional> RegistrosEmocionais { get; set; }
 
         public DbSet<Video> Videos { get; set; }
+
+        public DbSet<UsuarioHumor> UsuarioHumores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Usuario>()
-                .OwnsOne(u => u.Configuracoes, uc =>
+                .OwnsOne(u => u.Configuracoes, cfg =>
                 {
-                    uc.OwnsOne(c => c.PreferenciaNotificacoes);
-                    uc.OwnsOne(c => c.DispositivosConectados);
+                    cfg.OwnsOne(c => c.PreferenciaNotificacoes);
+                    cfg.Property(c => c.DispositivosConectados)
+                       .HasConversion(
+                           v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                           v => JsonSerializer.Deserialize<List<Dispositivo>>(v, (JsonSerializerOptions)null) ?? new List<Dispositivo>()
+                       );
                 });
 
             modelBuilder.Entity<Especialista>()
                 .OwnsOne(e => e.Configuracoes);
 
-            //modelBuilder.Entity<Usuario>()
-            //  .OwnsOne(u => u.Configuracoes, cfg =>
-            //   {
-            //       cfg.Property(c => c.DispositivosConectados)
-            //          .HasConversion(
-            //              v => JsonSerializer.Serialize<List<Dispositivo>>(v),
-            //              v => JsonSerializer.Deserialize<List<Dispositivo>>(v) ?? new List<Dispositivo>());
-            //   });
+            modelBuilder.Entity<UsuarioHumor>()
+                .HasKey(uh => uh.Id);
+
+            modelBuilder.Entity<UsuarioHumor>()
+                .HasOne(uh => uh.UsuarioProgresso)
+                .WithMany(up => up.Humores)
+                .HasForeignKey(uh => uh.UsuarioProgressoId);
+
         }
     }
 }
