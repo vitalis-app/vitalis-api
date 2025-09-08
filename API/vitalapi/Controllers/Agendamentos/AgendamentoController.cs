@@ -19,13 +19,13 @@ namespace vitalapi.Controllers.Especialista
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Agendamento>>> GetAgendamento()
         {
-            return await _context.Especialista.ToListAsync();
+            return await _context.Agendamentos.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Agendamento>> GetAgendamento(int id)
         {
-            var agendamento = await _context.Especialista.FindAsync(id);
+            var agendamento = await _context.Agendamentos.FindAsync(id);
 
             if (agendamento == null)
             {
@@ -37,7 +37,7 @@ namespace vitalapi.Controllers.Especialista
         [HttpPost]
         public async Task<ActionResult<Agendamento>> Postagendamento(Agendamento agendamento)
         {
-            _context.Especialista.Add(agendamento);
+            _context.Agendamentos.Add(agendamento);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetAgendamento), new { id = agendamento.Id }, agendamento);
@@ -73,14 +73,14 @@ namespace vitalapi.Controllers.Especialista
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAgendamento(int id)
         {
-            var agendamento = await _context.Especialista.FindAsync(id);
+            var agendamento = await _context.Agendamentos.FindAsync(id);
 
             if (agendamento == null)
             {
                 return NotFound();
             }
 
-            _context.Especialista.Remove(agendamento);
+            _context.Agendamentos.Remove(agendamento);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -88,7 +88,7 @@ namespace vitalapi.Controllers.Especialista
 
         private bool EspecialistaExists(int id)
         {
-            return _context.Especialista.Any(e => e.Id == id);
+            return _context.Agendamentos.Any(e => e.Id == id);
         }
 
     }

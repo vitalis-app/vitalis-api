@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.Models;
-
+using AssinaturaModel = vitalapi.Models.Assinatura.Assinatura;
 namespace vitalapi.Controllers.Assinatura
 {
     [Route("api/[controller]")]
@@ -17,13 +17,13 @@ namespace vitalapi.Controllers.Assinatura
             _context = vitalcontext;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Assinatura>>> GetAssinatura()
+        public async Task<ActionResult<IEnumerable<AssinaturaModel>>> GetAssinatura()
         {
             return await _context.Assinaturas.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Assinatura>> GetAssinatura(int id)
+        public async Task<ActionResult<AssinaturaModel>> GetAssinatura(int id)
         {
             var assinatura = await _context.Assinaturas.FindAsync(id);
 
@@ -35,7 +35,7 @@ namespace vitalapi.Controllers.Assinatura
             return assinatura;
         }
         [HttpPost]
-        public async Task<ActionResult<Assinatura>> PostAssinatura(Assinatura assinatura)
+        public async Task<ActionResult<AssinaturaModel>> PostAssinatura(AssinaturaModel assinatura)
         {
             _context.Assinaturas.Add(assinatura);
             await _context.SaveChangesAsync();
@@ -43,7 +43,7 @@ namespace vitalapi.Controllers.Assinatura
             return CreatedAtAction(nameof(GetAssinatura), new { id = assinatura.Id }, assinatura);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAssinatura(int id, Assinatura assinatura)
+        public async Task<IActionResult> PutAssinatura(int id, AssinaturaModel assinatura)
         {
             if (id != assinatura.Id)
             {
