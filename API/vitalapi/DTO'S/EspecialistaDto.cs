@@ -1,30 +1,29 @@
 ﻿namespace vitalapi.DTO_S
 {
-    public class EspecialistaDto
+    public class EspecialistaCreateDto
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
-        public string Especialidade { get; set; }
+        public ICollection<Especialidade> Especialidades { get; set; }
         public string Email { get; set; }
         public string Descricao { get; set; }
         public string CRP { get; set; }
         public string Biografia { get; set; }
         public decimal ValorConsulta { get; set; }
     }
-    public class CreateEspecialistaDto
+    public class EspecialistaReadDto
     {
         public string Nome { get; set; }
-        public string Especialidade { get; set; }
-        public string Email { get; set; }
-        public string Descricao { get; set; }
+        public ICollection<Especialidade> Especialidades  { get; set; }
         public string CRP { get; set; }
         public string Biografia { get; set; }
         public decimal ValorConsulta { get; set; }
-    }
-    public class UpdateEspecialistaDto
+        public double AvaliacaoMedia { get; set; }
+    }   
+    public class EspecialistaUpdateDto
     {
         public string Nome { get; set; }
-        public string Descricao { get; set; }
+        public ICollection<Especialidade> Especialidades { get; set; }
+        public string Biografia { get; set; }
         public decimal ValorConsulta { get; set; }
     }
 }

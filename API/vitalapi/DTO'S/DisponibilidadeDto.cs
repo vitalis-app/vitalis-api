@@ -1,22 +1,21 @@
 ﻿namespace vitalapi.DTO_S
 {
-    public class DisponibilidadeDto
+    public class DisponibilidadeCreateDto
     {
-        public int Id { get; set; }
-        public string HorarioInicio { get; set; }
-        public string HorarioFim { get; set; }
-        public string DiaSemana { get; set; }
+        public DateTime HorarioInicio { get; set; }
+        public DateTime HorarioFim { get; set; }
+        public DayOfWeek DiaSemana { get; set; }
     }
-    public class CreateDisponibilidadeDto
+    public class DisponibilidadeReadDto
     {
-        public string HorarioInicio { get; set; }
-        public string HorarioFim { get; set; }
-        public string DiaSemana { get; set; }
+        public DateTime HorarioInicio { get; set; }
+        public DateTime HorarioFim { get; set; }
+        public DayOfWeek DiaSemana { get; set; }
     }
-    public class UpdateDisponibilidadeDto
+    public class DisponibilidadeUpdateDto
     {
-        public string HorarioInicio { get; set; }
-        public string HorarioFim { get; set; }
+        public DateTime HorarioInicio { get; set; }
+        public DateTime HorarioFim { get; set; }
+        public DayOfWeek DiaSemana { get; set; }
     }
-
 }

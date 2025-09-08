@@ -1,13 +1,17 @@
-using System.Numerics;
-namespace vitalapi.Models.EstacaoVital;
-public class RegistroEmocional
-{
-    const int XPBase = 100;
-    const int XPMax = 200;
+using UsuarioModel = vitalapi.Models.Usuario.Usuario;
 
-    public int Id { get; set; }
-    public DateTime DiaRegistrado { get; set; }
-    public Humor HumorRegistrado { get; set; }
-    public int CalcularXPGanho(int diasAtivosStreak) => Math.Min(XPBase + (diasAtivosStreak * 5), XPMax);
-    public string ConfissaoUsuario { get; set; }
+namespace vitalapi.Models.EstacaoVital
+{
+    public class RegistroEmocional
+    {
+
+        public int Id { get; set; }
+
+        public int UsuarioId { get; set; }
+        public UsuarioModel Usuario { get; set; }
+
+        public DateTime DiaRegistrado { get; set; }
+        public Humor HumorRegistrado { get; set; }
+       public string ConfissaoUsuario { get; set; }
+    }
 }

@@ -1,48 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using vitalapi.Models.Assinatura;
+﻿using vitalapi.Models.Especialista;
 using vitalapi.Models.EstacaoVital;
+using vitalapi.Models.Midia;
 using vitalapi.Models.Pessoa;
+using AssinaturaModel = vitalapi.Models.Assinatura.Assinatura;
 
 namespace vitalapi.Models.Usuario
 {
     public class Usuario : PessoaBase
     {
         public UsuarioProgresso Progresso { get; set; }
-        public Planta PlantaAtual { get; set; }
-        public List<Planta> Jardim { get; set; } = new();
+
+        public AssinaturaModel AssinaturaAtiva { get; set; }
+        public int AssinaturaAtivaId { get; set; }
+
         public UsuarioConfiguracao Configuracoes { get; set; }
-
-        public int PlanoId { get; set; }
-        public Plano Plano { get; set; }
-
-        public void RegistrarAtividade()
-        {
-            var hoje = DateTime.Today;
-
-            if (Progresso.UltimaAtividade == null)
-            {
-                Progresso.DiasAtivosStreak = 1;
-            }
-
-            else
-            {
-                var ultimaAtividade = Progresso.UltimaAtividade.Value.Date;
-
-                if (ultimaAtividade == hoje)
-                {
-                    return;
-                }
-                else if (ultimaAtividade == hoje.AddDays(-1))
-                {
-                    Progresso.DiasAtivosStreak += 1;
-                }
-                else
-                {
-                    Progresso.DiasAtivosStreak = 1;
-                }
-            }
-
-            Progresso.UltimaAtividade = hoje;
-        }
+        public ICollection<Video> VideosAssistidos { get; set; } = new List<Video>();
+        public ICollection<UsuarioSessao> SessoesUsuario { get; set; } = new List<UsuarioSessao>();
+        public ICollection<UsuarioPlanta> UsuarioPlantas { get; set; } = new List<UsuarioPlanta>();
+        public ICollection<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
+        public ICollection<RegistroEmocional> RegistrosEmocionais { get; set; } = new List<RegistroEmocional>();
+        public ICollection<UsuarioMissao> Missoes { get; set; } = new List<UsuarioMissao>();
     }
 }

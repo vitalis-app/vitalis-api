@@ -1,23 +1,24 @@
-﻿namespace vitalapi.DTO_S
+﻿using System.ComponentModel.DataAnnotations;
+using vitalapi.Models.Assinatura;
+
+namespace vitalapi.DTO_S
 {
-    public class AssinaturaDto
+    public class AssinaturaCreateDto
     {
-        public int Id { get; set; }
-        public string DataInicio { get; set; }
-        public string Vencimento { get; set; }
-        public string Status { get; set; }
-        public bool Pago { get; set; }
+        [Required]
+        public int PlanoId { get; set; }
+        // TO-DO: Funcionalidade de pagamento -> [Required] public string TokenPagamento { get; set; }
+        // TO-DO: Funcionalidade de cupom -> public string? CupomDesconto { get; set; } 
     }
-    public class CreateAssinaturaDto
+    public class AssinaturaReadDto
     {
-        public string DataInicio { get; set; }
-        public string Vencimento { get; set; }
-        public string Status { get; set; }
-        public bool Pago { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime DataVencimento { get; set; }
+        public Status StatusAtual { get; set; }
     }
-    public class UpdateAssinaturaDto
+    public class AssinaturaUpdateDto
     {
-        public string Status { get; set; }
-        public bool Pago { get; set; }
+        public int PlanoId { get; set; }
+        public Status Status { get; set; }
     }
 }

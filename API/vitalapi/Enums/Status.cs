@@ -4,3 +4,16 @@ public enum Status
     Inativo,
     Ausente
 }
+
+public enum StatusPendencia
+{
+    Pendente,
+    Concluido
+}
+
+public enum StatusPagamento
+{
+    Pendente,
+    Pago,
+    Cancelado
+}

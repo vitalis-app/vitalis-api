@@ -11,13 +11,28 @@ namespace vitalapi.Mapping
         public MappingProfile() 
         {
             CreateMap<AgendamentoDto, Agendamento>();
-            CreateMap<AssinaturaDto, Assinatura>();
-            CreateMap<DisponibilidadeDto,Disponibilidade>();
-            CreateMap<EnderecoDto,Endereco>();
-            CreateMap<EspecialistaDto, Especialista>();
-            CreateMap<PlanoDto,Plano>();    
-            CreateMap<UsuarioDto, Usuario>();
-        }
 
+            CreateMap<AssinaturaReadDto, Assinatura>();
+            CreateMap<AssinaturaCreateDto, Assinatura>();
+            CreateMap<AssinaturaUpdateDto, Assinatura>();
+
+            CreateMap<DisponibilidadeCreateDto, Disponibilidade>();
+            CreateMap<DisponibilidadeReadDto, Disponibilidade>();
+            CreateMap<DisponibilidadeUpdateDto, Disponibilidade>();
+
+            CreateMap<EspecialistaCreateDto, Especialidade>();
+            CreateMap<EspecialistaReadDto, Especialidade>();
+            CreateMap<EspecialistaUpdateDto, Especialidade>();
+
+            CreateMap<UsuarioCreateDto, Usuario>();
+            CreateMap<UsuarioReadDto, Usuario>();
+            CreateMap<UsuarioUpdateDto, Usuario>();
+
+            CreateMap<UsuarioMissaoReadDto, UsuarioMissao>();
+            CreateMap<UsuarioConquistaReadDto, UsuarioConquista>();
+            
+            CreateMap<UsuarioPlantaReadDto, UsuarioPlanta>();
+            CreateMap<UsuarioPlantaUpdateDto, UsuarioPlanta>();
+        }
     }
 }

@@ -1,8 +1,11 @@
-namespace vitalapi.Models.Usuario.Conquistas
+namespace vitalapi.Models.Conquistas
 {
     public class Conquista
     {
         public int Id { get; set; }
+
+        public ICollection<UsuarioConquista> UsuariosConquistas { get; set; }
+
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public int QuantidadeXP { get; set; }
