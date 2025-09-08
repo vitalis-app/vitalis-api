@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
 using vitalapi.Models.Especialista;
 
+using EspecialistaModel = vitalapi.Models.Especialista.Especialista;
+
 namespace vitalapi.Controllers.Especialista
 {
     [Route("api/[controller]")]
@@ -19,14 +21,14 @@ namespace vitalapi.Controllers.Especialista
 
         // GET: api/disponibilidade
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Especialista>>> GetEspecialista()
+        public async Task<ActionResult<IEnumerable<EspecialistaModel>>> GetEspecialista()
         {
             return await _context.Especialistas.ToListAsync();
         }
 
         // GET: api/disponibilidade/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Especialista>> GetEspecialista(int id)
+        public async Task<ActionResult<EspecialistaModel>> GetEspecialista(int id)
         {
             var especialista = await _context.Especialistas.FindAsync(id);
 
@@ -40,7 +42,7 @@ namespace vitalapi.Controllers.Especialista
 
         // POST: api/disponibilidade
         [HttpPost]
-        public async Task<ActionResult<Especialista>> PostEspecialista(Especialista especialista)
+        public async Task<ActionResult<EspecialistaModel>> PostEspecialista(EspecialistaModel especialista)
         {
             _context.Especialistas.Add(especialista);
             await _context.SaveChangesAsync();
@@ -50,7 +52,7 @@ namespace vitalapi.Controllers.Especialista
 
         // PUT: api/disponibilidade/5   
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEspecialista(int id, Especialista especialista)
+        public async Task<IActionResult> PutEspecialista(int id, EspecialistaModel especialista)
         {
             if (id != especialista.Id)
             {
