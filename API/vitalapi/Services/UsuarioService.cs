@@ -28,12 +28,12 @@ namespace vitalapi.Services
             return _mapper.Map<UsuarioReadDto>(item);
         }
 
-        public async Task<UsuarioCreateDto> CreateAsync(UsuarioCreateDto dto)
+        public async Task<UsuarioReadDto> CreateAsync(UsuarioCreateDto dto)
         {
             var entity = _mapper.Map<Usuario>(dto);
             _context.Usuarios.Add(entity);
             await _context.SaveChangesAsync();
-            return _mapper.Map<UsuarioCreateDto>(entity);
+            return _mapper.Map<UsuarioReadDto>(entity);
         }
 
         public async Task<bool> UpdateAsync(int id, UsuarioUpdateDto dto)
