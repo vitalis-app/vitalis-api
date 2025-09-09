@@ -35,12 +35,56 @@ namespace vitalapi.Controllers.Assinatura
             return plano;
         }
         [HttpPost]
-        public async Task<ActionResult<Plano>> PostPlano(Plano plano)
-        {
-            _context.Planos.Add(plano);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPlano), new { id = plano.Id }, plano);
+        public IActionResult Post([FromBody] Plano plano)
+
+        {
+
+            try
+
+            {
+
+                Console.WriteLine("POST /api/Plano foi chamado.");
+
+                Console.WriteLine($"Dados recebidos: {System.Text.Json.JsonSerializer.Serialize(plano)}");
+
+
+
+                _context.Planos.Add(plano);
+
+                _context.SaveChanges();
+
+
+
+                Console.WriteLine("Plano salvo com sucesso!");
+
+
+
+                return Ok(plano);
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+                Console.WriteLine(" ERRO AO INSERIR PLANO:");
+
+                Console.WriteLine(ex.ToString());
+
+
+
+                return StatusCode(500, new
+                {
+
+                    StatusCode = 500,
+
+                    Message = "Erro interno no servidor"
+
+                });
+
+            }
+
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlano(int id, Plano plano)
