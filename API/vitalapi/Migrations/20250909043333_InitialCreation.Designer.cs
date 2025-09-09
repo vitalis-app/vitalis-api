@@ -12,8 +12,8 @@ using vitalapi.Context;
 namespace vitalapi.Migrations
 {
     [DbContext(typeof(VitalContext))]
-    [Migration("20250909042309_ReformatacaoDoBanco")]
-    partial class ReformatacaoDoBanco
+    [Migration("20250909043333_InitialCreation")]
+    partial class InitialCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
