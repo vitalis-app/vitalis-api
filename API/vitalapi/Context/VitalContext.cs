@@ -5,7 +5,6 @@ using vitalapi.Models.Configuracao;
 using vitalapi.Models.Conquistas;
 using vitalapi.Models.Especialista;
 using vitalapi.Models.EstacaoVital;
-using vitalapi.Models.Midia;
 using vitalapi.Models.Usuario;
 
 namespace vitalapi.Context
@@ -37,6 +36,7 @@ namespace vitalapi.Context
 
         public DbSet<UsuarioHumor> UsuarioHumores { get; set; }
 
+        public DbSet<Tag> Tags { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -75,6 +75,9 @@ namespace vitalapi.Context
                 .HasOne(uh => uh.UsuarioProgresso)
                 .WithMany(up => up.Humores)
                 .HasForeignKey(uh => uh.UsuarioProgressoId);
+            modelBuilder.Entity<Video>()
+    .HasMany(v => v.Tags)
+    .WithMany(t => t.Videos);
         }
 
     }

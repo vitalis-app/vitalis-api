@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vitalapi.Context;
-using vitalapi.Models.Midia;
+
 
 [ApiController]
 [Route("api/[controller]")]
@@ -39,12 +39,24 @@ public class VideoController : ControllerBase
 
         return video;
     }
-
     [HttpPost]
-    [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<Video>> PostVideo(Video video)
+    public async Task<ActionResult<Video>> PostVideo(CreateVideoDto dto)
     {
-        video.DataCriacao = DateTime.UtcNow;
+        var video = new Video
+        {
+            Titulo = dto.Titulo,
+            Descricao = dto.Descricao,
+            Url = dto.Url,
+            DuracaoSegundos = dto.DuracaoSegundos,
+            Categoria = dto.Categoria,
+            DataCriacao = DateTime.UtcNow,
+            Ativo = dto.Ativo,
+            Premium = dto.Premium,
+            Tags = await _context.Tags
+                        .Where(t => dto.Tags.Contains(t.Id))
+                        .ToListAsync()
+        };
+
         _context.Videos.Add(video);
         await _context.SaveChangesAsync();
 
@@ -52,7 +64,7 @@ public class VideoController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
+   
     public async Task<IActionResult> PutVideo(int id, Video video)
     {
         if (id != video.Id)
@@ -76,7 +88,7 @@ public class VideoController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Admin")] 
+ 
     public async Task<IActionResult> DeleteVideo(int id)
     {
         var video = await _context.Videos.FindAsync(id);
