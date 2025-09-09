@@ -1,5 +1,4 @@
 using vitalapi.Models.Conquistas;
-using vitalapi.Models.Midia;
 
 namespace vitalapi.Models.Usuario
 {

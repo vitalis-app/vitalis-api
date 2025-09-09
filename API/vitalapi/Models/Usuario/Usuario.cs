@@ -1,6 +1,5 @@
 ﻿using vitalapi.Models.Especialista;
 using vitalapi.Models.EstacaoVital;
-using vitalapi.Models.Midia;
 using vitalapi.Models.Pessoa;
 using AssinaturaModel = vitalapi.Models.Assinatura.Assinatura;
 

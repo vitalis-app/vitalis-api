@@ -1,4 +1,4 @@
-﻿using vitalapi.Models.Midia;
+﻿
 
 namespace vitalapi.Models.Usuario
 {
