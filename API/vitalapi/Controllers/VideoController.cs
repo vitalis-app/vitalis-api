@@ -41,7 +41,7 @@ public class VideoController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<ActionResult<Video>> PostVideo(Video video)
     {
         video.DataCriacao = DateTime.UtcNow;
@@ -52,7 +52,7 @@ public class VideoController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> PutVideo(int id, Video video)
     {
         if (id != video.Id)
