@@ -65,7 +65,7 @@ public class VideoController : ControllerBase
 
 
     [HttpPut("{id}")]
-   
+
     public async Task<IActionResult> PutVideo(int id, Video video)
     {
         if (id != video.Id)
