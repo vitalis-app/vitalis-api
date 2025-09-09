@@ -40,8 +40,10 @@ public class VideoController : ControllerBase
         return video;
     }
     [HttpPost]
-    public async Task<ActionResult<Video>> PostVideo(CreateVideoDto dto)
+    public async Task<ActionResult<Video>> PostVideo(VideoCreateDTO dto)
     {
+        var tags = await _context.Tags.Where(t => dto.TagIds.Contains(t.Id)).ToListAsync();
+
         var video = new Video
         {
             Titulo = dto.Titulo,
@@ -49,12 +51,10 @@ public class VideoController : ControllerBase
             Url = dto.Url,
             DuracaoSegundos = dto.DuracaoSegundos,
             Categoria = dto.Categoria,
-            DataCriacao = DateTime.UtcNow,
+            Tags = tags,
             Ativo = dto.Ativo,
             Premium = dto.Premium,
-            Tags = await _context.Tags
-                        .Where(t => dto.Tags.Contains(t.Id))
-                        .ToListAsync()
+            DataCriacao = DateTime.UtcNow
         };
 
         _context.Videos.Add(video);
@@ -62,6 +62,7 @@ public class VideoController : ControllerBase
 
         return CreatedAtAction(nameof(GetVideo), new { id = video.Id }, video);
     }
+
 
     [HttpPut("{id}")]
    
