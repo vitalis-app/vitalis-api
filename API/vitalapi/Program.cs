@@ -38,8 +38,6 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 
-
-
 app.MapGet("/healthz", () => Results.Ok("Healthy"));
 
 app.UseAuthorization();

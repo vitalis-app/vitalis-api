@@ -35,7 +35,7 @@ namespace vitalapi.Controllers.Especialista
             return agendamento;
         }
         [HttpPost]
-        public async Task<ActionResult<Agendamento>> Postagendamento(Agendamento agendamento)
+        public async Task<ActionResult<Agendamento>> PostAgendamento(Agendamento agendamento)
         {
             _context.Agendamentos.Add(agendamento);
             await _context.SaveChangesAsync();

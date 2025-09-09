@@ -2,10 +2,6 @@
 
 namespace vitalapi.DTO_S
 {
-    public class AgendamentoDto
-    {
-    }
-
     public class AgendamentoCreateDto
     {
         [Required]

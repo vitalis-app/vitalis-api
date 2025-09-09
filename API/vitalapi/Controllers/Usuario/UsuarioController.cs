@@ -53,7 +53,7 @@ namespace vitalapi.Controllers.UsuarioControllers
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null) return NotFound();
 
-            usuario.RegistrarAtividade();
+            // TO-DO: Fazer JWT -- usuario.RegistrarAtividade();
             await _context.SaveChangesAsync();
 
             return Ok(new { usuario.Progresso.DiasAtivosStreak });
