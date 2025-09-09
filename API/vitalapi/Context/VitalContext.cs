@@ -41,19 +41,32 @@ namespace vitalapi.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Especialista>()
+                .OwnsOne(e => e.Configuracoes, cfg =>
+                {
+                    cfg.OwnsOne(e => e.PreferenciaNotificacoes);
+
+                    cfg.Property(e => e.DispositivosConectados)
+                        .HasConversion(
+                            v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                            v => JsonSerializer.Deserialize<List<Dispositivo>>(v, (JsonSerializerOptions)null) ?? new List<Dispositivo>()
+                        );
+                });
+
             modelBuilder.Entity<Usuario>()
                 .OwnsOne(u => u.Configuracoes, cfg =>
                 {
                     cfg.OwnsOne(c => c.PreferenciaNotificacoes);
+
                     cfg.Property(c => c.DispositivosConectados)
-                       .HasConversion(
-                           v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
-                           v => JsonSerializer.Deserialize<List<Dispositivo>>(v, (JsonSerializerOptions)null) ?? new List<Dispositivo>()
-                       );
+                        .HasConversion(
+                            v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                            v => JsonSerializer.Deserialize<List<Dispositivo>>(v, (JsonSerializerOptions)null) ?? new List<Dispositivo>()
+                        );
                 });
 
-            modelBuilder.Entity<Especialista>()
-                .OwnsOne(e => e.Configuracoes);
+            modelBuilder.Entity<UsuarioPlanta>()
+                .HasKey(up => new { up.UsuarioId, up.PlantaId });
 
             modelBuilder.Entity<UsuarioHumor>()
                 .HasKey(uh => uh.Id);
@@ -62,7 +75,7 @@ namespace vitalapi.Context
                 .HasOne(uh => uh.UsuarioProgresso)
                 .WithMany(up => up.Humores)
                 .HasForeignKey(uh => uh.UsuarioProgressoId);
-
         }
+
     }
 }
