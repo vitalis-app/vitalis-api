@@ -32,12 +32,12 @@ public class AgendamentoService
         return _mapper.Map<IEnumerable<AgendamentoReadDto>>(items);
     }
 
-    public async Task<AgendamentoDto> CreateAsync(AgendamentoCreateDto dto)
+    public async Task<AgendamentoReadDto> CreateAsync(AgendamentoCreateDto dto)
     {
         var entity = _mapper.Map<Agendamento>(dto);
         _context.Agendamentos.Add(entity);
         await _context.SaveChangesAsync();
-        return _mapper.Map<AgendamentoDto>(entity);
+        return _mapper.Map<AgendamentoReadDto>(entity);
     }
 
     public async Task<bool> UpdateAsync(int id, AgendamentoUpdateDto dto)
