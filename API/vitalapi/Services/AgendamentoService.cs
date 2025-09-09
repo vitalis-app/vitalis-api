@@ -22,6 +22,16 @@ public class AgendamentoService
         return _mapper.Map<IEnumerable<AgendamentoReadDto>>(items);
     }
 
+    public async Task<IEnumerable<AgendamentoReadDto>> GetByUsuarioIdAsync(int usuarioId)
+    {
+        var items = await _context.Agendamentos
+            .Include(a => a.Especialista)
+            .Where(a => a.UsuarioId == usuarioId)
+            .ToListAsync();
+
+        return _mapper.Map<IEnumerable<AgendamentoReadDto>>(items);
+    }
+
     public async Task<AgendamentoDto> CreateAsync(AgendamentoCreateDto dto)
     {
         var entity = _mapper.Map<Agendamento>(dto);

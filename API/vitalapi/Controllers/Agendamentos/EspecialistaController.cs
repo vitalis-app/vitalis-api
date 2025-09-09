@@ -19,14 +19,12 @@ namespace vitalapi.Controllers.Especialista
             _context = vitalcontext;
         }
 
-        // GET: api/disponibilidade
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EspecialistaModel>>> GetEspecialista()
         {
             return await _context.Especialistas.ToListAsync();
         }
 
-        // GET: api/disponibilidade/5
         [HttpGet("{id}")]
         public async Task<ActionResult<EspecialistaModel>> GetEspecialista(int id)
         {
@@ -40,7 +38,6 @@ namespace vitalapi.Controllers.Especialista
             return especialista;
         }
 
-        // POST: api/disponibilidade
         [HttpPost]
         public async Task<ActionResult<EspecialistaModel>> PostEspecialista(EspecialistaModel especialista)
         {
@@ -50,7 +47,6 @@ namespace vitalapi.Controllers.Especialista
             return CreatedAtAction(nameof(GetEspecialista), new { id = especialista.Id }, especialista);
         }
 
-        // PUT: api/disponibilidade/5   
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEspecialista(int id, EspecialistaModel especialista)
         {
@@ -80,7 +76,6 @@ namespace vitalapi.Controllers.Especialista
             return NoContent();
         }
 
-        // DELETE: api/disponibilidade/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEspecialista(int id)
         {
