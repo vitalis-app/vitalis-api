@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vitalapi.Context;
 
@@ -11,9 +12,11 @@ using vitalapi.Context;
 namespace vitalapi.Migrations
 {
     [DbContext(typeof(VitalContext))]
-    partial class VitalContextModelSnapshot : ModelSnapshot
+    [Migration("20250910062821_AssinaturasPodemSerNullable")]
+    partial class AssinaturasPodemSerNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,6 +225,9 @@ namespace vitalapi.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Especialidades")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("FotoPerfil")
                         .HasColumnType("longtext");
 
@@ -243,19 +249,6 @@ namespace vitalapi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Especialistas");
-                });
-
-            modelBuilder.Entity("vitalapi.Models.Especialista.EspecialistaEspecialidade", b =>
-                {
-                    b.Property<int>("EspecialistaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Especialidade")
-                        .HasColumnType("int");
-
-                    b.HasKey("EspecialistaId", "Especialidade");
-
-                    b.ToTable("Especialidades");
                 });
 
             modelBuilder.Entity("vitalapi.Models.EstacaoVital.Missao", b =>
@@ -385,7 +378,7 @@ namespace vitalapi.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AssinaturaAtivaId")
+                    b.Property<int>("AssinaturaAtivaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCriacao")
@@ -673,17 +666,6 @@ namespace vitalapi.Migrations
                     b.Navigation("Configuracoes");
                 });
 
-            modelBuilder.Entity("vitalapi.Models.Especialista.EspecialistaEspecialidade", b =>
-                {
-                    b.HasOne("vitalapi.Models.Especialista.Especialista", "Especialista")
-                        .WithMany("Especialidades")
-                        .HasForeignKey("EspecialistaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Especialista");
-                });
-
             modelBuilder.Entity("vitalapi.Models.EstacaoVital.RegistroEmocional", b =>
                 {
                     b.HasOne("vitalapi.Models.Usuario.Usuario", "Usuario")
@@ -706,7 +688,9 @@ namespace vitalapi.Migrations
                 {
                     b.HasOne("vitalapi.Models.Assinatura.Assinatura", "AssinaturaAtiva")
                         .WithMany()
-                        .HasForeignKey("AssinaturaAtivaId");
+                        .HasForeignKey("AssinaturaAtivaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsOne("vitalapi.Models.Usuario.UsuarioConfiguracao", "Configuracoes", b1 =>
                         {
@@ -840,11 +824,6 @@ namespace vitalapi.Migrations
             modelBuilder.Entity("vitalapi.Models.Conquistas.Conquista", b =>
                 {
                     b.Navigation("UsuariosConquistas");
-                });
-
-            modelBuilder.Entity("vitalapi.Models.Especialista.Especialista", b =>
-                {
-                    b.Navigation("Especialidades");
                 });
 
             modelBuilder.Entity("vitalapi.Models.EstacaoVital.Missao", b =>
