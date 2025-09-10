@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using vitalapi.Context;
-using vitalapi.Models.Especialista;
-
-using EspecialistaModel = vitalapi.Models.Especialista.Especialista;
+﻿using Microsoft.AspNetCore.Mvc;
+using vitalapi.DTO_S;
+using vitalapi.Services;
 
 namespace vitalapi.Controllers.Especialista
 {
@@ -12,88 +8,41 @@ namespace vitalapi.Controllers.Especialista
     [ApiController]
     public class EspecialistaController : ControllerBase
     {
-        private readonly VitalContext _context;
+        private readonly EspecialistaService _service;
 
-        public EspecialistaController(VitalContext vitalcontext)
+        public EspecialistaController(EspecialistaService service)
         {
-            _context = vitalcontext;
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EspecialistaModel>>> GetEspecialista()
+        public async Task<ActionResult<IEnumerable<EspecialistaReadDto>>> GetEspecialistas()
         {
-            return await _context.Especialistas.ToListAsync();
+            var especialistas = await _service.GetAllAsync();
+            return Ok(especialistas);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<EspecialistaModel>> GetEspecialista(int id)
+        public async Task<ActionResult<EspecialistaReadDto>> GetEspecialista(int id)
         {
-            var especialista = await _context.Especialistas.FindAsync(id);
-
-            if (especialista == null)
-            {
-                return NotFound();
-            }
-
-            return especialista;
+            var especialista = await _service.GetByIdAsync(id);
+            if (especialista == null) return NotFound();
+            return Ok(especialista);
         }
 
         [HttpPost]
-        public async Task<ActionResult<EspecialistaModel>> PostEspecialista(EspecialistaModel especialista)
+        public async Task<ActionResult<EspecialistaReadDto>> PostEspecialista(EspecialistaCreateDto createDto)
         {
-            _context.Especialistas.Add(especialista);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetEspecialista), new { id = especialista.Id }, especialista);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEspecialista(int id, EspecialistaModel especialista)
-        {
-            if (id != especialista.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(especialista).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EspecialistaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            var novoEspecialista = await _service.CreateAsync(createDto);
+            return CreatedAtAction(nameof(GetEspecialista), new { id = novoEspecialista.Id }, novoEspecialista);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEspecialista(int id)
         {
-            var especialista = await _context.Especialistas.FindAsync(id);
-            if (especialista == null)
-            {
-                return NotFound();
-            }
-
-            _context.Especialistas.Remove(especialista);
-            await _context.SaveChangesAsync();
-
+            var success = await _service.DeleteAsync(id);
+            if (!success) return NotFound();
             return NoContent();
-        }
-
-        private bool EspecialistaExists(int id)
-        {
-            return _context.Especialistas.Any(e => e.Id == id);
         }
     }
 }

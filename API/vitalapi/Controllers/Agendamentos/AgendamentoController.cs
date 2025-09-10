@@ -1,95 +1,44 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using vitalapi.Context;
-using vitalapi.Models.Especialista;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace vitalapi.Controllers.Especialista
+[Route("api/[controller]")]
+[ApiController]
+public class AgendamentosController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AgendamentoController : ControllerBase
+    private readonly AgendamentoService _service;
+
+    public AgendamentosController(AgendamentoService service)
     {
-        private readonly VitalContext _context;
+        _service = service;
+    }
 
-        public AgendamentoController(VitalContext vitalcontext)
+    [HttpPost]
+    public async Task<ActionResult<AgendamentoReadDto>> CreateAgendamento(AgendamentoCreateDto createDto)
+    {
+        try
         {
-            _context = vitalcontext;
+            var novoAgendamento = await _service.CreateAsync(createDto);
+            return CreatedAtAction(nameof(GetAgendamentoById),
+                new { id = novoAgendamento.Id },
+                novoAgendamento);
         }
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Agendamento>>> GetAgendamento()
+        catch (Exception ex)
         {
-            return await _context.Agendamentos.ToListAsync();
+            return BadRequest(new { message = ex.Message });
         }
+    }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Agendamento>> GetAgendamento(int id)
-        {
-            var agendamento = await _context.Agendamentos.FindAsync(id);
+    [HttpGet("{id}")]
+    public async Task<ActionResult<AgendamentoReadDto>> GetAgendamentoById(int id)
+    {
+        var agendamento = await _service.GetByIdAsync(id);
+        if (agendamento == null) return NotFound();
+        return Ok(agendamento);
+    }
 
-            if (agendamento == null)
-            {
-                return NotFound();
-            }
-
-            return agendamento;
-        }
-        [HttpPost]
-        public async Task<ActionResult<Agendamento>> PostAgendamento(Agendamento agendamento)
-        {
-            _context.Agendamentos.Add(agendamento);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetAgendamento), new { id = agendamento.Id }, agendamento);
-        }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAssinatura(int id, Agendamento agendamento)
-        {
-            if (id != agendamento.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(agendamento).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EspecialistaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAgendamento(int id)
-        {
-            var agendamento = await _context.Agendamentos.FindAsync(id);
-
-            if (agendamento == null)
-            {
-                return NotFound();
-            }
-
-            _context.Agendamentos.Remove(agendamento);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool EspecialistaExists(int id)
-        {
-            return _context.Agendamentos.Any(e => e.Id == id);
-        }
-
+    [HttpGet("usuario/{usuarioId}")]
+    public async Task<ActionResult<IEnumerable<AgendamentoReadDto>>> GetAgendamentosPorUsuario(int usuarioId)
+    {
+        var agendamentos = await _service.GetByUsuarioIdAsync(usuarioId);
+        return Ok(agendamentos);
     }
 }
