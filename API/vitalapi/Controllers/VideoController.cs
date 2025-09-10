@@ -21,8 +21,6 @@ public class VideoController : ControllerBase
     public async Task<ActionResult<IEnumerable<Video>>> GetVideos()
     {
         return await _context.Videos
-            .Include(v => v.Tags)
-            .Where(v => v.Ativo)
             .ToListAsync();
     }
 
