@@ -11,11 +11,10 @@ namespace vitalapi.Mapping
         public MappingProfile()
         {
             // Agendamento
-            CreateMap<AgendamentoCreateDto, Agendamento>();
             CreateMap<Agendamento, AgendamentoReadDto>()
-                .ForMember(dest => dest.EspecialistaNome,
-                    opt => opt.MapFrom(src => src.Especialista.Nome));
-            CreateMap<AgendamentoUpdateDto, Agendamento>();
+                .ForMember(dest => dest.UsuarioNome, opt => opt.MapFrom(src => src.Usuario.Nome))
+                .ForMember(dest => dest.EspecialistaNome, opt => opt.MapFrom(src => src.Especialista.Nome));
+            CreateMap<AgendamentoCreateDto, Agendamento>();
 
             // Assinatura
             CreateMap<AssinaturaCreateDto, Assinatura>();
@@ -23,14 +22,19 @@ namespace vitalapi.Mapping
             CreateMap<AssinaturaUpdateDto, Assinatura>();
 
             // Disponibilidade
-            CreateMap<DisponibilidadeCreateDto, Disponibilidade>();
-            CreateMap<Disponibilidade, DisponibilidadeReadDto>();
-            CreateMap<DisponibilidadeUpdateDto, Disponibilidade>();
+            CreateMap<Disponibilidade, DisponibilidadeReadDto>()
+                        .ForMember(dest => dest.HorarioInicio, opt => opt.MapFrom(src => src.HorarioInicio.ToString("HH:mm")))
+                        .ForMember(dest => dest.HorarioFim, opt => opt.MapFrom(src => src.HorarioFim.ToString("HH:mm")));
+            CreateMap<DisponibilidadeCreateDto, Disponibilidade>()
+                .ForMember(dest => dest.HorarioInicio, opt => opt.MapFrom(src => DateTime.Parse(src.HorarioInicio)))
+                .ForMember(dest => dest.HorarioFim, opt => opt.MapFrom(src => DateTime.Parse(src.HorarioFim)));
 
             // Especialista / Especialidade
-            CreateMap<EspecialistaCreateDto, Especialidade>();
-            CreateMap<Especialidade, EspecialistaReadDto>();
-            CreateMap<EspecialistaUpdateDto, Especialidade>();
+            CreateMap<EspecialistaCreateDto, Especialista>()
+                .ForMember(dest => dest.Especialidades, opt => opt.Ignore());
+            CreateMap<Especialista, EspecialistaReadDto>();
+            CreateMap<EspecialistaUpdateDto, Especialista>();
+            CreateMap<Especialidade, EspecialidadeReadDto>();
 
             // Usuario
             CreateMap<UsuarioCreateDto, Usuario>();
