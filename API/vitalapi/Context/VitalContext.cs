@@ -22,6 +22,7 @@ namespace vitalapi.Context
         public DbSet<UsuarioMissao> UsuarioMissoes { get; set; }
 
         public DbSet<Especialista> Especialistas { get; set; }
+        public DbSet<EspecialistaEspecialidade> Especialidades { get; set; }
         public DbSet<Disponibilidade> Disponibilidades { get; set; }
         public DbSet<Agendamento> Agendamentos { get; set; }
 
@@ -52,6 +53,13 @@ namespace vitalapi.Context
                             v => JsonSerializer.Deserialize<List<Dispositivo>>(v, (JsonSerializerOptions)null) ?? new List<Dispositivo>()
                         );
                 });
+
+            modelBuilder.Entity<EspecialistaEspecialidade>()
+                .HasKey(ee => new { ee.EspecialistaId, ee.Especialidade });
+
+            modelBuilder.Entity<EspecialistaEspecialidade>()
+                .Property(ee => ee.Especialidade)
+                .HasConversion<int>();
 
             modelBuilder.Entity<Usuario>()
                 .OwnsOne(u => u.Configuracoes, cfg =>

@@ -8,7 +8,7 @@ namespace vitalapi.Models.Especialista
      
         List<Agendamento> Agendamentos { get; set; } = new();
 
-        public ICollection<Especialidade> Especialidades { get; set; } = new List<Especialidade>();
+        public ICollection<EspecialistaEspecialidade> Especialidades { get; set; } = new List<EspecialistaEspecialidade>();
         public string CRP { get; set; }
         public string Biografia { get; set; }
         public decimal ValorConsulta { get; set; }
