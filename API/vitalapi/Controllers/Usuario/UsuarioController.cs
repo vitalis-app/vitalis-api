@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using vitalapi.Context;
-using vitalapi.Models.Usuario;
+﻿using Microsoft.AspNetCore.Mvc;
+using vitalapi.DTO_S;
+using vitalapi.Services;
 
 namespace vitalapi.Controllers.UsuarioControllers
 {
@@ -10,105 +8,65 @@ namespace vitalapi.Controllers.UsuarioControllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly VitalContext _context;
+        private readonly UsuarioService _usuarioService;
 
-        public UsuarioController(VitalContext vitalcontext)
+        public UsuarioController(UsuarioService usuarioService)
         {
-            _context = vitalcontext;
+            _usuarioService = usuarioService;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
+        public async Task<ActionResult<IEnumerable<UsuarioReadDto>>> GetUsuarios()
         {
-            return await _context.Usuarios.ToListAsync();
+            var usuarios = await _usuarioService.GetAllAsync();
+            return Ok(usuarios);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetUsuario(int id)
+        public async Task<ActionResult<UsuarioReadDto>> GetUsuario(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
+            var usuario = await _usuarioService.GetByIdAsync(id);
 
             if (usuario == null)
             {
                 return NotFound();
             }
 
-            return usuario;
+            return Ok(usuario);
         }
-
 
         [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
+        public async Task<ActionResult<UsuarioReadDto>> PostUsuario(UsuarioCreateDto createDto)
         {
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
+            var novoUsuarioDto = await _usuarioService.CreateAsync(createDto);
 
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.Id }, usuario);
+            return CreatedAtAction(nameof(GetUsuario), new { id = novoUsuarioDto.Id }, novoUsuarioDto);
         }
-
-        [HttpPost("{id}/checkin")]
-        public async Task<IActionResult> RegistrarCheckin(int id)
-        {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null) return NotFound();
-
-            // TO-DO: Fazer JWT -- usuario.RegistrarAtividade();
-            await _context.SaveChangesAsync();
-
-            return Ok(new { usuario.Progresso.DiasAtivosStreak });
-        }
-
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
+        public async Task<IActionResult> PutUsuario(int id, UsuarioUpdateDto updateDto)
         {
-            if (id != usuario.Id)
+            var success = await _usuarioService.UpdateAsync(id, updateDto);
+
+            if (!success)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(usuario).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsuarioExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NoContent(); 
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
+            var success = await _usuarioService.DeleteAsync(id);
+
+            if (!success)
             {
                 return NotFound();
             }
 
-            _context.Usuarios.Remove(usuario);
-            await _context.SaveChangesAsync();
-
             return NoContent();
         }
-
-        private bool UsuarioExists(int id)
-        {
-            return _context.Usuarios.Any(e => e.Id == id);
-        }
-
     }
 }
